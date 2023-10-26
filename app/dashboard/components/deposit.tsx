@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { UserAuth } from "@/components/config/authContext";
 import { db } from "@/components/config/firebase";
 import { collection, addDoc, updateDoc, getDocs } from "firebase/firestore";
@@ -91,6 +91,7 @@ const Deposit = () => {
     }
   };
 
+  
   return (
     <div className="container mx-auto  bg-white p-6 rounded-md">
       <div>

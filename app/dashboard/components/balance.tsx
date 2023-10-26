@@ -1,11 +1,13 @@
 "use client";
 import React, { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { UserAuth } from "@/components/config/authContext";
 import { db } from "@/components/config/firebase";
 import { collection, query, where, getDocs } from "firebase/firestore";
 
 const Balance = () => {
   const { user } = UserAuth();
+  const pathname = usePathname();
   const [userBalance, setUserBalance] = useState(null);
   const [userMoneyIn, setUserMoneyIn] = useState(null);
   const [userMoneyOut, setUserMoneyOut] = useState(null);
@@ -63,15 +65,17 @@ const Balance = () => {
 
       const readTextAloud = () => {
         if (user?.displayName) {
-          const welcomeMessage = `Welcome back ${user?.displayName}. Your current balance is ₦${fetchedData.userBalance}. You have received ₦${fetchedData.userMoneyIn} and spent ₦${fetchedData.userMoneyOut}.`;
+          const welcomeMessage = `Welcome back ${user?.displayName}. Your current balance is ₦${fetchedData.userBalance} naira. You have received ₦${fetchedData.userMoneyIn} naira and spent ₦${fetchedData.userMoneyOut} naira.`;
           const synth = window.speechSynthesis;
           const utterance = new SpeechSynthesisUtterance(welcomeMessage);
           synth.speak(utterance);
         }
       };
 
-      // Call the function to read text aloud after the state variables have been updated
-      readTextAloud();
+      // Call the function to read text aloud only when route is "/dashboard"
+      if (pathname === "/dashboard") {
+        readTextAloud();
+      }
     };
 
     fetchDataAndReadAloud();
