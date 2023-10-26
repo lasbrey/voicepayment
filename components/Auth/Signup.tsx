@@ -3,14 +3,30 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { useRouter } from "next/navigation";
+import { UserAuth } from "@/components/config/authContext";
 
 const Signup = () => {
+  const router = useRouter();
+  const { emailSignUp, user } = UserAuth();
+  const [error, setError] = useState(null);
+
   const [data, setData] = useState({
     firstName: "",
-    lastName: "",
     email: "",
     password: "",
   });
+
+  const handleEmailSignUp = async (e) => {
+    e.preventDefault();
+
+    try {
+      await emailSignUp(data.email, data.password, data.firstName);
+      router.push("/dashboard");
+    } catch (error) {
+      setError(error.message);
+    }
+  };
 
   return (
     <>
@@ -88,28 +104,17 @@ const Signup = () => {
               <span className="hidden h-[1px] w-full max-w-[200px] bg-stroke dark:bg-stroke-dark sm:block"></span>
             </div>
 
-            <form>
+            <form onSubmit={handleEmailSignUp}>
               <div className="flex flex-col lg:flex-row lg:justify-between gap-7.5 lg:gap-14 mb-7.5 lg:mb-12.5">
                 <input
                   name="firstName"
                   type="text"
-                  placeholder="First name"
+                  placeholder="Name"
                   value={data.firstName}
                   onChange={(e) =>
                     setData({ ...data, [e.target.name]: e.target.value })
                   }
-                  className="p-2 w-full lg:w-1/2 bg-transparent border-b border-stroke dark:border-strokedark focus-visible:outline-none focus:border-waterloo dark:focus:border-manatee focus:placeholder:text-black dark:focus:placeholder:text-white pb-3.5"
-                />
-
-                <input
-                  name="lastName"
-                  type="text"
-                  placeholder="Last name"
-                  value={data.lastName}
-                  onChange={(e) =>
-                    setData({ ...data, [e.target.name]: e.target.value })
-                  }
-                  className="p-2 w-full lg:w-1/2 bg-transparent border-b border-stroke dark:border-strokedark focus-visible:outline-none focus:border-waterloo dark:focus:border-manatee focus:placeholder:text-black dark:focus:placeholder:text-white pb-3.5"
+                  className="p-2 w-full lg:w-full bg-transparent border-b border-stroke dark:border-strokedark focus-visible:outline-none focus:border-waterloo dark:focus:border-manatee focus:placeholder:text-black dark:focus:placeholder:text-white pb-3.5"
                 />
               </div>
 

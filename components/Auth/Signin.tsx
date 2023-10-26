@@ -2,13 +2,29 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
+import { UserAuth } from "@/components/config/authContext";
 
 const Signin = () => {
+  const router = useRouter();
+  const { emailSignIn, user } = UserAuth();
+  const [error, setError] = useState(null);
   const [data, setData] = useState({
     email: "",
     password: "",
   });
+
+  const handleEmailSignIn = async (e) => {
+    e.preventDefault();
+
+    try {
+      await emailSignIn(data.email, data.password);
+      router.push("/dashboard"); // Use router.push to navigate to the dashboard page
+    } catch (error) {
+      setError(error.message);
+    }
+  };
 
   return (
     <>
@@ -86,7 +102,7 @@ const Signin = () => {
               <span className="hidden h-[1px] w-full max-w-[200px] bg-stroke dark:bg-stroke-dark sm:block"></span>
             </div>
 
-            <form>
+            <form onSubmit={handleEmailSignIn}>
               <div className="flex flex-col lg:flex-row lg:justify-between gap-7.5 lg:gap-14 mb-7.5 lg:mb-12.5">
                 <input
                   type="text"
@@ -133,6 +149,7 @@ const Signin = () => {
 
                 <button
                   aria-label="login with email and password"
+                  type="submit"
                   className="inline-flex items-center gap-2.5 bg-black dark:bg-btndark hover:bg-blackho ease-in-out duration-300 font-medium text-white rounded-full px-6 py-3"
                 >
                   Log in

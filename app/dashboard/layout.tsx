@@ -7,6 +7,7 @@ const DashboardLayout = ({ children }) => {
   return (
     <html lang="eng">
       <body className="bg-[#f6f6f6]">
+        
         <Sidebar />
 
         {children}

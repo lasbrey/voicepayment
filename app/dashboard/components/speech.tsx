@@ -1,9 +1,14 @@
-import React from "react";
+"use client";
+import React, { useState, useEffect } from "react";
+
 
 const Speech = () => {
+
   return (
     <div className="fixed bottom-8 right-8 z-[99]">
-      <div className="flex h-10 w-10 cursor-pointer items-center justify-center p-2 rounded-sm bg-primary shadow-md transition duration-300 ease-in-out hover:bg-opacity-80 hover:shadow-signUp">
+      <div
+        className="flex h-10 w-10 cursor-pointer items-center justify-center p-2 rounded-sm bg-primary shadow-md transition duration-300 ease-in-out hover:bg-opacity-80 hover:shadow-signUp"
+      >
         <svg
           fill="#fff"
           height="800px"
@@ -20,6 +25,9 @@ const Speech = () => {
             </g>
           </g>
         </svg>
+      </div>
+      <div className="absolute bottom-20 right-8 text-white text-xs">
+      Recognized Text: 
       </div>
     </div>
   );

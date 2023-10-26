@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Metadata } from "next";
 import Quicklinks from "./components/quicklinks";
 import Balance from "./components/balance";

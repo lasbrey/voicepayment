@@ -3,13 +3,23 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { UserAuth } from "@/components/config/authContext";
 
 import menuData from "./menuData";
 
 const Header = () => {
+  const { logOut, user } = UserAuth();
   const [navigationOpen, setNavigationOpen] = useState(false);
   const [dropdownToggler, setDropdownToggler] = useState(false);
   const [stickyMenu, setStickyMenu] = useState(false);
+
+  const handleSignOut = async () => {
+    try {
+      await logOut();
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const pathUrl = usePathname();
 
@@ -146,7 +156,8 @@ const Header = () => {
           <div className="flex items-center gap-6 mt-7 lg:mt-0">
 
             <Link
-              href="/auth/signin"
+              href="/#"
+              onClick={handleSignOut}
               className="text-white text-regular font-medium hover:text-primary"
             >
            LOG OUT
