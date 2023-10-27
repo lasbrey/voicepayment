@@ -1,7 +1,6 @@
 import React from "react";
 import { AuthContextProvider } from "@/components/config/authContext";
-import 'regenerator-runtime/runtime'
-
+import "regenerator-runtime/runtime";
 
 const Layout = ({ children }) => {
   return (

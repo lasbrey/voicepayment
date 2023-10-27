@@ -7,6 +7,15 @@ import { useRouter } from "next/navigation";
 import { UserAuth } from "@/components/config/authContext";
 
 const Signup = () => {
+  const [transcript, setTranscript] = useState("");
+  const startSpeechRecognition = () => {
+    const recognition = new window.webkitSpeechRecognition(); // Initialize speech recognition
+    recognition.onresult = (event) => {
+      const speechToText = event.results[0][0].transcript;
+      setTranscript(speechToText);
+    };
+    recognition.start(); // Start speech recognition
+  };
   const router = useRouter();
   const { emailSignUp, user } = UserAuth();
   const [error, setError] = useState(null);
@@ -72,7 +81,9 @@ const Signup = () => {
             </h2>
 
             <div className="flex items-center gap-8">
+              <p className="justify-center items-center">{transcript}</p>
               <button
+                onClick={startSpeechRecognition}
                 aria-label="signup with google"
                 className="mb-6 flex w-full items-center justify-center rounded-sm border border-stroke bg-[#f8f8f8] py-3 px-6 text-base text-body-color outline-none transition-all duration-300 hover:border-primary hover:bg-primary/5 hover:text-primary dark:border-transparent dark:bg-[#2C303B] dark:text-body-color-dark dark:shadow-two dark:hover:border-primary dark:hover:bg-primary/5 dark:hover:text-primary dark:hover:shadow-none"
               >

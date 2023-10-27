@@ -1,10 +1,25 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 
 const Speech = () => {
+  const [transcript, setTranscript] = useState("");
+  const startSpeechRecognition = () => {
+    const recognition = new window.webkitSpeechRecognition(); // Initialize speech recognition
+    recognition.onresult = (event) => {
+      const speechToText = event.results[0][0].transcript;
+      setTranscript(speechToText);
+    };
+    recognition.start(); // Start speech recognition
+  };
   return (
     <div>
-      <div className="fixed bottom-8 right-8 z-[99]">
-        <div className="flex h-10 w-10 cursor-pointer items-center justify-center p-2 rounded-sm bg-primary shadow-md transition duration-300 ease-in-out hover:bg-opacity-80 hover:shadow-signUp">
+      <div className="fixed bottom-8 right-8 z-[99] flex">
+        <p className="pr-2">{transcript}</p>
+
+        <div
+          onClick={startSpeechRecognition}
+          className="flex h-10 w-10 cursor-pointer items-center justify-center p-2 rounded-sm bg-primary shadow-md transition duration-300 ease-in-out hover:bg-opacity-80 hover:shadow-signUp"
+        >
           <svg
             fill="#fff"
             height="800px"

@@ -2167,13 +2167,6 @@
   dependencies:
     "tslib" "^2.4.0"
 
-"@types/bcrypt@^5.0.0":
-  "integrity" "sha512-dIIrEsLV1/v0AUNI8oHMaRRTSeVjoy5ID8oclJavtPj8CwPJoD1eFoNXEypuu6k091brEzBeOo3LlxeAH9zRZg=="
-  "resolved" "https://registry.npmjs.org/@types/bcrypt/-/bcrypt-5.0.1.tgz"
-  "version" "5.0.1"
-  dependencies:
-    "@types/node" "*"
-
 "@types/color-convert@*":
   "integrity" "sha512-KGRIgCxwcgazts4MXRCikPbIMzBpjfdgEZSy8TRHU/gtg+f9sOfHdtK8unPfxIoBtyd2aTTwINVLSNENlC8U8A=="
   "resolved" "https://registry.npmjs.org/@types/color-convert/-/color-convert-2.0.2.tgz"
@@ -2248,7 +2241,7 @@
   "resolved" "https://registry.npmjs.org/@types/lodash/-/lodash-4.14.200.tgz"
   "version" "4.14.200"
 
-"@types/node@*", "@types/node@>=12.12.47", "@types/node@>=13.7.0", "@types/node@20.2.5":
+"@types/node@>=12.12.47", "@types/node@>=13.7.0", "@types/node@20.2.5":
   "integrity" "sha512-JJulVEQXmiY9Px5axXHeYGLSjhkZEnD+MDPDGbCbIAbMslkKwmygtZFy1X6s/075Yo94sf8GuSlFfPzysQrWZQ=="
   "resolved" "https://registry.npmjs.org/@types/node/-/node-20.2.5.tgz"
   "version" "20.2.5"
@@ -2265,7 +2258,7 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react-speech-recognition@^3.9.3":
+"@types/react-speech-recognition@^3.9.2":
   "integrity" "sha512-QUahvbgfsCnvPxim22D6CTS67g8zybSSvCF8QCOXq61/1syLp1cFJTZC3/xHNFLNKn6Daj8nAA6VOUNzbu3ZWw=="
   "resolved" "https://registry.npmjs.org/@types/react-speech-recognition/-/react-speech-recognition-3.9.3.tgz"
   "version" "3.9.3"
@@ -2281,7 +2274,7 @@
     "@types/scheduler" "*"
     "csstype" "^3.0.2"
 
-"@types/regenerator-runtime@^0.13.3":
+"@types/regenerator-runtime@^0.13.1":
   "integrity" "sha512-5l/scetIVmHSnj6viqApJ8S9qiTlPE9ASspH24bJFku1n9kB9HST+Itpw6o9kUNPGNQRkwIIJ63Xqb0/6rYMYg=="
   "resolved" "https://registry.npmjs.org/@types/regenerator-runtime/-/regenerator-runtime-0.13.3.tgz"
   "version" "0.13.3"

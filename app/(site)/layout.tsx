@@ -5,11 +5,9 @@ import Footer from "@/components/Footer";
 import Lines from "@/components/Lines";
 import ScrollToTop from "@/components/ScrollToTop";
 import { Inter } from "next/font/google";
-import { ThemeProvider } from "next-themes";
 const inter = Inter({ subsets: ["latin"] });
 import "../globals.css";
-
-import ToasterContext from "../context/ToastContext";
+import Speech from "@/app/dashboard/components/speech";
 
 export default function RootLayout({
   children,
@@ -19,18 +17,14 @@ export default function RootLayout({
   return (
     <html lang="eng">
       <body className={`dark:bg-black`}>
-        <ThemeProvider
-          enableSystem={false}
-          attribute="class"
-          defaultTheme="light"
-        >
+        <div>
           <Lines />
           <Header />
-          <ToasterContext />
           {children}
+          <Speech />
           <Footer />
           <ScrollToTop />
-        </ThemeProvider>
+        </div>
       </body>
     </html>
   );

@@ -7,6 +7,15 @@ import { motion } from "framer-motion";
 import { UserAuth } from "@/components/config/authContext";
 
 const Signin = () => {
+  const [transcript, setTranscript] = useState("");
+  const startSpeechRecognition = () => {
+    const recognition = new window.webkitSpeechRecognition(); // Initialize speech recognition
+    recognition.onresult = (event) => {
+      const speechToText = event.results[0][0].transcript;
+      setTranscript(speechToText);
+    };
+    recognition.start(); // Start speech recognition
+  };
   const router = useRouter();
   const { emailSignIn, user } = UserAuth();
   const [error, setError] = useState(null);
@@ -69,8 +78,10 @@ const Signin = () => {
               Login to Your Account
             </h2>
             <div className="flex flex-col">
+            <p className="justify-center items-center">{transcript}</p>
               <div className="flex items-center gap-8">
                 <button
+                  onClick={startSpeechRecognition}
                   aria-label="sign with google"
                   className="mb-6 flex w-full items-center justify-center rounded-sm border border-stroke bg-[#f8f8f8] py-3 px-6 text-base text-body-color outline-none transition-all duration-300 hover:border-primary hover:bg-primary/5 hover:text-primary dark:border-transparent dark:bg-[#2C303B] dark:text-body-color-dark dark:shadow-two dark:hover:border-primary dark:hover:bg-primary/5 dark:hover:text-primary dark:hover:shadow-none"
                 >
